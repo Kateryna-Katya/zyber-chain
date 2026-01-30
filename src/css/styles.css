@@ -457,3 +457,216 @@ ul {
         bottom: -20px;
     }
 }
+/* BENEFITS SECTION */
+.benefits {
+    padding: 8rem 0;
+    background: var(--color-light);
+}
+
+.benefits__top {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+}
+
+.benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.benefit-card {
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.benefit-card:hover::before {
+    transform: scaleX(1);
+}
+
+.benefit-card__icon {
+    width: 60px;
+    height: 60px;
+    background: var(--color-light);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    transition: var(--transition);
+}
+
+.benefit-card:hover .benefit-card__icon {
+    background: var(--color-primary);
+    color: var(--color-accent);
+}
+
+.benefit-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+}
+
+.benefit-card__text {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .benefits {
+        padding: 5rem 0;
+    }
+}
+/* INNOVATIONS SECTION */
+.innovations {
+    padding: 10rem 0;
+    background: var(--color-dark);
+    color: #fff;
+    overflow: hidden;
+}
+
+.innovations__wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.section-title--light {
+    color: #fff;
+    margin-bottom: 3.5rem;
+}
+
+.innovations__steps {
+    margin-bottom: 3rem;
+}
+
+.step-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.step-item__num {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    font-weight: 800;
+    position: relative;
+    padding-top: 5px;
+}
+
+.step-item__num::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 150%;
+    width: 30px;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.3);
+}
+
+.step-item__info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.step-item__info p {
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 450px;
+}
+
+/* Visual Element */
+.innovations__visual {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.innovation-sphere {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, rgba(18, 60, 51, 0) 70%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.sphere-inner {
+    width: 250px;
+    height: 250px;
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    position: relative;
+    animation: rotateSphere 10s linear infinite;
+}
+
+.sphere-inner::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--color-accent);
+}
+
+@keyframes rotateSphere {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 992px) {
+    .innovations__wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .innovations__visual {
+        order: -1;
+        margin-bottom: 3rem;
+    }
+
+    .innovation-sphere {
+        width: 300px;
+        height: 300px;
+    }
+}

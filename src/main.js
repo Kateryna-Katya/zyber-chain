@@ -108,4 +108,21 @@ function initParallax() {
         transition: 'cubic-bezier(0,0,0,1)',
         scale: 1.3
     });
+    // Внутри Promise.all(...).then(() => {
+    initBenefitsAnimation();
+// });
+
+function initBenefitsAnimation() {
+    gsap.from('.benefit-card', {
+        scrollTrigger: {
+            trigger: '.benefits__grid',
+            start: 'top 80%', // Анимация начнется, когда верх сетки будет на 80% высоты экрана
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2, // Карточки появляются по очереди
+        ease: "power3.out"
+    });
+}
 }
