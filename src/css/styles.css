@@ -773,3 +773,229 @@ ul {
     color: var(--color-primary);
     font-size: 0.9rem;
 }
+/* CONTACT SECTION */
+.contact {
+    padding: 10rem 0;
+    background: var(--color-light);
+}
+
+.contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.contact__item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contact__item i {
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    margin-top: 5px;
+}
+
+.contact__item span {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+}
+
+.contact__item p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+/* Form Styles */
+.contact__form-wrapper {
+    background: #fff;
+    padding: 4rem;
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact__form input:not([type="checkbox"]) {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--color-light);
+    border-radius: 12px;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.contact__form input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: #fff;
+}
+
+.form-captcha {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.form-captcha label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-checkbox {
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn--full {
+    width: 100%;
+    border: none;
+}
+
+.form-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.form-message.success {
+    background: #e7f4ee;
+    color: #1d4d38;
+}
+
+.form-message.error {
+    background: #fdeaea;
+    color: #712b2b;
+}
+
+@media (max-width: 992px) {
+    .contact__grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .contact__form-wrapper {
+        padding: 2.5rem;
+    }
+}
+/* MOBILE MENU */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.burger span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #fff;
+    transition: var(--transition);
+}
+
+/* Анимация бургера */
+.burger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 992px) {
+    .burger {
+        display: flex;
+    }
+
+    .header__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: var(--transition);
+        z-index: 1050;
+    }
+
+    .header__menu.active {
+        right: 0;
+    }
+
+    .nav-link {
+        font-size: 1.5rem;
+    }
+}
+
+/* COOKIE POPUP */
+.cookie-popup {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 1.5rem 0;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cookie-popup.active {
+    transform: translateY(-100%);
+    bottom: 0;
+}
+
+.cookie-popup__content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.cookie-popup p {
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.cookie-popup a {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .cookie-popup__content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
