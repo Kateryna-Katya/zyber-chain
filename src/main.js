@@ -65,4 +65,47 @@ function initHeroAnimation() {
     }, "-=0.8");
 }
 
-// Плавный скролл и хедер остаются из предыдущего шага...
+// Подключаем библиотеки
+const libs = [
+    'https://unpkg.com/split-type',
+    'https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js'
+];
+
+// Загрузка всех либ
+Promise.all(libs.map(src => {
+    return new Promise((resolve) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = resolve;
+        document.head.appendChild(s);
+    });
+})).then(() => {
+    initHeroAnimation();
+    initParallax();
+});
+
+function initHeroAnimation() {
+    // ИСПРАВЛЕНИЕ: разделяем по словам (words), чтобы не было разрывов
+    const text = new SplitType('#hero-title', { types: 'words' });
+
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    tl.to('.hero__badge', { opacity: 1, y: 0, duration: 1, delay: 0.5 })
+    .from('.word', { // Анимируем слова
+        y: 40,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 1
+    }, "-=0.8")
+    .to('.hero__subtitle', { opacity: 1, y: 0, duration: 1 }, "-=0.6")
+    .to('.hero__actions', { opacity: 1, y: 0, duration: 1 }, "-=0.8");
+}
+
+function initParallax() {
+    const images = document.querySelectorAll('.parallax-img');
+    new simpleParallax(images, {
+        delay: .6,
+        transition: 'cubic-bezier(0,0,0,1)',
+        scale: 1.3
+    });
+}
