@@ -1,14 +1,15 @@
 /**
- * ZYBER-CHAIN.BLOG - ФИНАЛЬНЫЙ СКРИПТ
+ * ZYBER-CHAIN.BLOG - FINAL OPTIMIZED SCRIPT
  */
 
-// 1. Загрузка библиотек
+// 1. Список необходимых библиотек
 const libs = [
     'https://unpkg.com/split-type',
     'https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js',
     'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js'
 ];
 
+// 2. Загрузка библиотек и инициализация
 Promise.all(libs.map(src => {
     return new Promise((resolve) => {
         const s = document.createElement('script');
@@ -21,18 +22,17 @@ Promise.all(libs.map(src => {
 });
 
 function initAll() {
-    initLenis();
-    initHeroAnimation();
-    initParallax();
-    initBenefitsAnimation();
-    initInnovationsAnimation();
-    initBlogSlider();
-    initMobileMenu();
-    initContactForm();
-    initCookiePopup();
+    initLenis();            // Плавный скролл
+    initHeroAnimation();    // Анимация заголовка Hero
+    initParallax();         // Параллакс для фото в About
+    initInnovationsAnimation(); // Анимация шагов в Innovations
+    initBlogSlider();       // Слайдер статей
+    initMobileMenu();       // Бургер-меню
+    initContactForm();      // Форма с капчей
+    initCookiePopup();      // Куки-попап
 }
 
-// Плавный скролл Lenis
+// Плавный скролл (Lenis)
 function initLenis() {
     const lenis = new Lenis();
     function raf(time) {
@@ -41,14 +41,15 @@ function initLenis() {
     }
     requestAnimationFrame(raf);
 
-    // Скролл по клику на ссылки
+    // Плавный переход по якорям
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
             if (target) {
                 lenis.scrollTo(target);
-                // Закрыть мобильное меню если открыто
+                // Закрываем мобильное меню при клике
                 document.querySelector('.header__menu').classList.remove('active');
                 document.querySelector('.burger').classList.remove('active');
             }
@@ -61,14 +62,18 @@ function initMobileMenu() {
     const burger = document.querySelector('.burger');
     const menu = document.querySelector('.header__menu');
     
-    burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
-        menu.classList.toggle('active');
-    });
+    if (burger && menu) {
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            menu.classList.toggle('active');
+        });
+    }
 }
 
-// Hero Анимация (SplitType по словам)
+// Анимация Hero (SplitType по словам)
 function initHeroAnimation() {
+    if (!document.querySelector('#hero-title')) return;
+    
     const text = new SplitType('#hero-title', { types: 'words' });
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
@@ -78,68 +83,90 @@ function initHeroAnimation() {
       .to('.hero__actions', { opacity: 1, y: 0, duration: 1 }, "-=0.8");
 }
 
-// Параллакс
+// Параллакс для изображений
 function initParallax() {
     const images = document.querySelectorAll('.parallax-img');
-    new simpleParallax(images, { delay: .6, scale: 1.3 });
+    if (images.length > 0) {
+        new simpleParallax(images, { delay: .6, scale: 1.3, transition: 'cubic-bezier(0,0,0,1)' });
+    }
 }
 
-// Анимация преимуществ
-function initBenefitsAnimation() {
-    gsap.from('.benefit-card', {
-        scrollTrigger: { trigger: '.benefits__grid', start: 'top 80%' },
-        y: 60, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
-    });
-}
-
-// Анимация инноваций
+// Анимация шагов в секции Innovations
 function initInnovationsAnimation() {
+    if (!document.querySelector('.step-item')) return;
+    
     gsap.to('.step-item', {
-        scrollTrigger: { trigger: '.innovations__steps', start: 'top 70%' },
-        opacity: 1, x: 0, duration: 1, stagger: 0.3
+        scrollTrigger: {
+            trigger: '.innovations__steps',
+            start: 'top 75%',
+        },
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        stagger: 0.3,
+        ease: "power2.out"
     });
 }
 
-// Слайдер блога
+// Инициализация Swiper (Блог)
 function initBlogSlider() {
+    if (!document.querySelector('.blog-slider')) return;
+    
     new Swiper('.blog-slider', {
-        slidesPerView: 1, spaceBetween: 30, loop: true,
-        navigation: { nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom' },
-        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next-custom',
+            prevEl: '.swiper-button-prev-custom',
+        },
+        breakpoints: {
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
+        }
     });
 }
 
-// Контактная форма
+// Контактная форма и капча
 let captchaResult;
 function initContactForm() {
     const form = document.getElementById('contactForm');
+    if (!form) return;
+
     const qField = document.getElementById('captcha-question');
-    
     const gen = () => {
         const n1 = Math.floor(Math.random() * 10) + 1;
         const n2 = Math.floor(Math.random() * 10) + 1;
         captchaResult = n1 + n2;
-        if(qField) qField.innerText = `${n1} + ${n2}`;
+        qField.innerText = `${n1} + ${n2}`;
     };
     gen();
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const userAns = parseInt(document.getElementById('captcha-input').value);
-        if(userAns !== captchaResult) {
-            document.getElementById('form-error').style.display = 'block';
+        const successMsg = document.getElementById('form-success');
+        const errorMsg = document.getElementById('form-error');
+
+        if (userAns !== captchaResult) {
+            errorMsg.style.display = 'block';
+            successMsg.style.display = 'none';
             gen();
             return;
         }
         
         const btn = form.querySelector('button');
         btn.innerText = 'Отправка...';
+        btn.disabled = true;
+
         setTimeout(() => {
-            document.getElementById('form-success').style.display = 'block';
-            document.getElementById('form-error').style.display = 'none';
+            successMsg.style.display = 'block';
+            errorMsg.style.display = 'none';
             form.reset();
             btn.innerText = 'Отправить запрос';
+            btn.disabled = false;
             gen();
+            setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
         }, 1500);
     });
 }
@@ -149,6 +176,8 @@ function initCookiePopup() {
     const popup = document.getElementById('cookie-popup');
     const acceptBtn = document.getElementById('cookie-accept');
     
+    if (!popup) return;
+
     if (!localStorage.getItem('cookies-accepted')) {
         setTimeout(() => { popup.classList.add('active'); }, 2000);
     }

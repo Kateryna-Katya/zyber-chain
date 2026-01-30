@@ -999,3 +999,93 @@ ul {
         gap: 1rem;
     }
 }
+/* FOOTER MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+    .footer {
+        padding: 4rem 0 2rem;
+        text-align: center;
+    }
+
+    .footer__grid {
+        grid-template-columns: 1fr;
+        /* Одна колонка на мобильных */
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .footer__col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer__text {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .footer__title {
+        margin-bottom: 1.2rem;
+        font-size: 1.2rem;
+    }
+
+    .footer__links li {
+        margin-bottom: 1rem;
+    }
+
+    .footer__contacts {
+        width: 100%;
+    }
+
+    .footer__contacts li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Увеличиваем область нажатия для мобильных */
+    .footer__contacts a {
+        display: block;
+        padding: 0.5rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* ЮРИДИЧЕСКИЕ СТРАНИЦЫ (Общие стили) */
+.pages {
+    padding: 12rem 0 8rem;
+    background: #fff;
+    min-height: 80vh;
+}
+
+.pages h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 3rem;
+    color: var(--color-dark);
+}
+
+.pages h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.5rem;
+    color: var(--color-primary);
+}
+
+.pages p {
+    margin-bottom: 1.2rem;
+    color: var(--color-text);
+    max-width: 800px;
+}
+
+.pages ul {
+    margin-bottom: 2rem;
+    padding-left: 1.2rem;
+}
+
+.pages li {
+    list-style: disc;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
