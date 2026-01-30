@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zyber Chain | Экспертный консалтинг и инновации</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='20' width='40' height='40' rx='8' fill='%23123c33'/><rect x='40' y='40' width='40' height='40' rx='8' fill='%23d4af37' fill-opacity='0.8'/></svg>"
+    type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+  <body>
+    <load
+      src="./partials/header.html"
+/>
+
+<main>
+  <section class="pages">
+    <div class="container">
+      <div class="pages__header">
+        <span class="hero__badge">Свяжитесь с нами</span>
+        <h1>Контакты</h1>
+      </div>
+
+      <div class="contact-page__grid">
+        <div class="contact-page__info">
+          <div class="info-block">
+            <h3>Офис в Риме</h3>
+            <p>Via del Corso, 184, 00186 Roma RM, Italy</p>
+          </div>
+
+          <div class="info-block">
+            <h3>Служба поддержки</h3>
+            <p><a href="tel:+390697636935" class="contact-link">+39 06 9763 6935</a></p>
+            <p><a href="mailto:hello@zyber-chain.blog" class="contact-link">hello@zyber-chain.blog</a></p>
+          </div>
+
+          <div class="info-block">
+            <h3>Часы работы (CET)</h3>
+            <ul class="styled-list">
+              <li>Пн — Пт: 09:00 – 18:00</li>
+              <li>Сб — Вс: Выходной</li>
+            </ul>
+          </div>
+
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-page__map">
+          <div class="map-placeholder">
+            <img src="img/placeholder.png" alt="Roma Office Location" class="parallax-img">
+            <div class="map-overlay">
+              <span>Открыть в Google Maps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-page__form-section">
+        <div class="disclaimer-box">
+          <h2>Напишите нам сообщение</h2>
+          <p>Есть конкретный вопрос по консалтингу или AI-интеграции? Мы ответим в течение рабочего дня.</p>
+
+          <form id="contactForm" class="contact__form">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+    <load src="./partials/footer.html" />
+    <div class="cookie-popup" id="cookie-popup">
+      <div class="cookie-popup__content">
+        <p>Этот сайт использует cookies для улучшения работы. Подробнее — в нашей <a href="./cookies.html">Cookie
+            политике</a>.</p>
+        <button class="btn btn--primary" id="cookie-accept">Принять</button>
+      </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script type="module" src="./main.js"></script>
+    </body>
+    
+    </html>
