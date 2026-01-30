@@ -410,7 +410,7 @@ ul {
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 1.2;
     margin-bottom: 2rem;
     color: var(--color-dark);
@@ -1088,4 +1088,143 @@ ul {
     list-style: disc;
     margin-bottom: 0.5rem;
     color: var(--color-text);
+}
+/* MOBILE MENU & BURGER */
+.burger {
+    display: none;
+    /* Скрыт на десктопе */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    /* Высота всего контейнера бургера */
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+    padding: 0;
+}
+
+/* Линии бургера */
+.burger span,
+.burger::before,
+.burger::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    /* Толщина линий */
+    background: #fff;
+    /* Цвет линий — белый */
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+/* Если вы используете структуру с одним span в HTML, 
+   сделаем через псевдоэлементы для надежности: */
+.burger span {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 992px) {
+    .burger {
+        display: flex;
+        /* Показываем на мобильных */
+    }
+
+    .header__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* Спрятано за экраном */
+        width: 100%;
+        height: 100vh;
+        background: var(--color-dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1050;
+        visibility: hidden;
+    }
+
+    .header__menu.active {
+        right: 0;
+        visibility: visible;
+    }
+
+    /* Визуализация активного бургера (крестик) */
+    .burger.active span {
+        background: transparent;
+        /* Скрываем среднюю линию */
+    }
+
+    .burger.active::before {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .burger.active::after {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+@media (max-width: 992px) {
+    .burger {
+        display: flex;
+    }
+
+    /* Мобильное меню — контейнер */
+    .header__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* Изначально спрятано вправо */
+        width: 100%;
+        height: 100vh;
+        background: var(--color-dark);
+
+        /* Центрирование контента */
+        display: flex !important;
+        /* Форсируем флекс для отображения */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+
+        margin: 0;
+        padding: 0;
+        transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1050;
+    }
+
+    /* Когда меню активно */
+    .header__menu.active {
+        right: 0;
+    }
+
+    /* Ссылки внутри мобильного меню */
+    .header__menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .header__menu .nav-link {
+        display: block;
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        /* Крупный текст для мобилки */
+        color: #fff !important;
+        /* Гарантированно белый цвет */
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Скрываем кнопку в хедере, чтобы не мешала бургеру */
+    .header .btn--outline {
+        display: none;
+    }
 }
